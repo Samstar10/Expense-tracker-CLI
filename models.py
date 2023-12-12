@@ -22,3 +22,8 @@ class Expense(Base):
     amount = Column(Integer)
     description = Column(String(255))
     date = Column(DateTime, default=datetime.utcnow)
+    user_id = Column(Integer, ForeignKey('users.id'))
+    category_id = Column(Integer, ForeignKey('categories.id'))
+
+
+
