@@ -10,11 +10,13 @@ class User(Base):
     id = Column(Integer, primary_key=True)
     username = Column(String(50), unique=True, nullable=False)
     password = Column(PasswordType(schemes=['bcrypt']), nullable=False)
+    expenses = relationship('Expense', back_populates='user')
 
 class Category(Base):
     __tablename__ = 'categories'
     id = Column(Integer, primary_key = True)
     name = Column(String(50), unique=True, nullable=False)
+    expenses = relationship('Expense', back_populates='category')
 
 class Expense(Base):
     __tablename__ = 'expenses'
@@ -24,6 +26,8 @@ class Expense(Base):
     date = Column(DateTime, default=datetime.utcnow)
     user_id = Column(Integer, ForeignKey('users.id'), nullable='False')
     category_id = Column(Integer, ForeignKey('categories.id'), nullable='False')
+    user = relationship('User', back_populates='éxpenses')
+    category = relationship('Category', back_populates='expenses')
 
 
 engine = create_engine('sqlite:///expense_tracker.db')
