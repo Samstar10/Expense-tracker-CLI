@@ -1,5 +1,5 @@
 from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, DateTime
-from sqlalchemy import declarative_base, relationship
+from sqlalchemy.orm import declarative_base, relationship
 from sqlalchemy_utils import PasswordType
 from datetime import datetime
 
@@ -26,7 +26,7 @@ class Expense(Base):
     date = Column(DateTime, default=datetime.utcnow)
     user_id = Column(Integer, ForeignKey('users.id'), nullable='False')
     category_id = Column(Integer, ForeignKey('categories.id'), nullable='False')
-    user = relationship('User', back_populates='éxpenses')
+    user = relationship('User', back_populates='expenses')
     category = relationship('Category', back_populates='expenses')
 
 

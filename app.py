@@ -1,6 +1,6 @@
 import click
 from sqlalchemy import create_engine
-from sqlalchem.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker
 from models import Base, User, Category, Expense
 
 engine = create_engine('sqlite:///expense_tracker.db')
@@ -12,7 +12,7 @@ def cli():
 
 @cli.command()
 @click.argument('username')
-@click.argument('password', hide_input=True)
+@click.argument('password')
 def create_user(username, password):
     session = Session()
     user = User(username=username, password=password)
