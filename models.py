@@ -9,3 +9,7 @@ class User(Base):
     id = Column(Integer, primary_key=True)
     username = Column(String(50))
     password = Column(String)
+
+class Category(Base):
+    __tablename__ = 'categories'
+    id = Column(Integer, primary_key = True)
