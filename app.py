@@ -20,6 +20,16 @@ def create_user(username, password):
     session.commit()
     print(f"User {username} has been created successfully.")
 
+
+@cli.command()
+@click.argument('name')
+def add_category(name):
+    session = Session()
+    category = Category(name=name)
+    session.add(category)
+    session.commit()
+    print(f"Category '{name}' has been added successfully")
+
 @cli.command()
 @click.argument('username')
 @click.argument('password')
