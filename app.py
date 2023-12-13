@@ -31,6 +31,19 @@ def add_category(name):
     print(f"Category '{name}' has been added successfully")
 
 @cli.command()
+@click.argument('category_name')
+def delete_category(category_name):
+    session = Session()
+    category = session.query(Category).filter_by(name=category_name).first()
+    if category:
+        session.delete(category)
+        session.commit()
+        print(f"Category '{category_name}' has been deleted successfully.")
+    else:
+        print(f"Category '{category_name}' does not exist.")
+    
+
+@cli.command()
 @click.argument('username')
 @click.argument('password')
 def login(username, password):
