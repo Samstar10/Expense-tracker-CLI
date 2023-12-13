@@ -77,7 +77,22 @@ def view_expenses(user):
     else:
         print(f"User '{user}' does not exist. Please create an account")
     
-
+@cli.command()
+@click.option('--user', prompt='Username')
+@click.argument('expense_id')
+def delete_expense(user, expense_id):
+    session = Session()
+    user_obj = session.query(User).filter_by(username=user).first()
+    if user_obj:
+        expense = session.query(Expense).filter_by(id=expense_id, user=user_obj).first()
+        if expense:
+            session.delete(expense)
+            session.commit()
+            print("Expense deleted successfully")
+        else:
+            print("Invalid expense ID or the expense does not belong to the logged-in user.")
+    else:
+        print(f"User '{user}' does not exist. Please create an account.")
 
 if __name__ == '__main__':
     Base.metadata.create_all(engine)
