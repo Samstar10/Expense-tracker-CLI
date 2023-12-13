@@ -61,7 +61,22 @@ def add_expense(user, amount, description, category):
     else:
         print(f"User '{user}' does not exist. Please create an account first.")
 
-
+@cli.command()
+@click.option('--user', prompt='Username')
+def view_expenses(user):
+    session = Session()
+    user_obj = session.query(User).filter_by(username=user).first()
+    if user_obj:
+        expenses = session.query(Expense).filter_by(user=user_obj).all()
+        if expenses:
+            print("Expenses:")
+            for expense in expenses:
+                print(f"ID: {expense.id}, Amount: {expense.amount}, Description: {expense.description}, Category: {expense.category.name}")
+        else:
+            print("No expenses found.")
+    else:
+        print(f"User '{user}' does not exist. Please create an account")
+    
 
 
 if __name__ == '__main__':
