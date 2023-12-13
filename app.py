@@ -1,11 +1,10 @@
 import click
-# from sqlalchemy import create_engine
-# from sqlalchemy.orm import sessionmaker
-# from models import Base, User, Category, Expense
-from db import Session, User, Category, Expense
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from models import Base, User, Category, Expense
 
-# engine = create_engine('sqlite:///expense_tracker.db')
-# Session = sessionmaker(bind=engine)
+engine = create_engine('sqlite:///expense_tracker.db')
+Session = sessionmaker(bind=engine)
 
 @click.group()
 def cli():
@@ -109,6 +108,5 @@ def delete_expense(user, expense_id):
         print(f"User '{user}' does not exist. Please create an account.")
 
 if __name__ == '__main__':
-    Session().bind = engine
     Base.metadata.create_all(engine)
     cli()
