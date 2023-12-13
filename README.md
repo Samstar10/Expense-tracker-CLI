@@ -70,4 +70,4 @@ To delete an expense, use the command:
 5. Make a pull request.
 
 ### NB
-- User passwords are securely stored using the bcrypt hashing algorithm.
+User passwords are securely stored using the bcrypt hashing algorithm.
