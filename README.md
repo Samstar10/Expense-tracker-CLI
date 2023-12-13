@@ -24,7 +24,7 @@ To create a user, run the following command:
 
 Replace `<username>` and `<password>` with the desired values.
 
-### Addimg Categories
+### Adding Categories
 
 To add a category, use the following command:
 
@@ -59,3 +59,15 @@ To view expenses, run:
 To delete an expense, use the command:
 
 `python3 app.py delete-expense --user=<username> <expense_id>`
+
+
+## Contributing
+
+1. Fork the repository.
+2. Clone the repository.
+3. Install dependencies by running `pipenv install`.
+4. Create branch using `git checkout -b new-feature`.
+5. Make a pull request.
+
+### NB
+- User passwords are securely stored using the bcrypt hashing algorithm.
