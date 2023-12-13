@@ -20,6 +20,18 @@ def create_user(username, password):
     session.commit()
     print(f"User {username} has been created successfully.")
 
+@cli.command()
+@click.argument('username')
+@click.argument('password')
+def login(username, password):
+    session = Session()
+    user = session.query(User).filter_by(username=username).first()
+    if user and user.password == password:
+        print(f"Logged in as {username}.")
+    else:
+        print("Invalid username or password.")
+
+
 
 if __name__ == '__main__':
     Base.metadata.create_all(engine)
